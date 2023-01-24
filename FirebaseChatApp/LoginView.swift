@@ -6,6 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
+
+class FirebaseManager: NSObject {
+    
+    let auth: Auth
+    
+    static let shared = FirebaseManager()
+    
+    override init() {
+        FirebaseApp.configure()
+        self.auth = Auth.auth()
+        super.init()
+    }
+}
 
 struct LoginView: View {
     
@@ -59,6 +73,9 @@ struct LoginView: View {
                         }
                         .background(Color.blue)
                     }
+                    
+                    Text(loginStatusMessage)
+                        .foregroundColor(.red)
                 }
                 .padding()
             }
@@ -72,9 +89,37 @@ struct LoginView: View {
     
     private func handleAction() {
         if isLoginMode {
-            print("Log In")
+            loginUser()
         } else {
-            print("Create account")
+            createNewAccount()
+        }
+    }
+    
+    private func loginUser() {
+        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("Failed to login user:", error)
+                self.loginStatusMessage = "Failed to login user: \(error)"
+                return
+            }
+            
+            print("Successfully logged in as user: \(result?.user.uid ?? "")")
+            loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
+        }
+    }
+    
+    @State var loginStatusMessage = ""
+    
+    private func createNewAccount() {
+        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("Failed to create user:", error)
+                self.loginStatusMessage = "Failed to create user: \(error)"
+                return
+            }
+            
+            print("Successfully created user: \(result?.user.uid ?? "")")
+            loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
         }
     }
 }
