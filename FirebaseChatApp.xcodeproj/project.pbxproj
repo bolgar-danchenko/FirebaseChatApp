@@ -20,6 +20,7 @@
 		B5EA033529818EF4002D394E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA033429818EF4002D394E /* FirebaseManager.swift */; };
 		B5EA033829819A61002D394E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B5EA033729819A61002D394E /* SDWebImageSwiftUI */; };
 		B5EA033B2981BC19002D394E /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA033A2981BC18002D394E /* ChatUser.swift */; };
+		B5EA033E2982550A002D394E /* CreateNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA033D2982550A002D394E /* CreateNewMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		B5EA0331298111B6002D394E /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		B5EA033429818EF4002D394E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B5EA033A2981BC18002D394E /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		B5EA033D2982550A002D394E /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		B5EA0330298111A5002D394E /* MainMessages */ = {
 			isa = PBXGroup;
 			children = (
+				B5EA033C298254F7002D394E /* NewMessage */,
 				B5EA0331298111B6002D394E /* MainMessagesView.swift */,
 			);
 			path = MainMessages;
@@ -112,6 +115,14 @@
 				B5EA033A2981BC18002D394E /* ChatUser.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B5EA033C298254F7002D394E /* NewMessage */ = {
+			isa = PBXGroup;
+			children = (
+				B5EA033D2982550A002D394E /* CreateNewMessageView.swift */,
+			);
+			path = NewMessage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				B5EA032829807000002D394E /* ImagePicker.swift in Sources */,
 				B5EA0332298111B6002D394E /* MainMessagesView.swift in Sources */,
 				B5EA033529818EF4002D394E /* FirebaseManager.swift in Sources */,
+				B5EA033E2982550A002D394E /* CreateNewMessageView.swift in Sources */,
 				B5EA031529803974002D394E /* LoginView.swift in Sources */,
 				B5EA031329803974002D394E /* FirebaseChatAppApp.swift in Sources */,
 			);
