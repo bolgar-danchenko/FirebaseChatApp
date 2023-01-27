@@ -15,7 +15,6 @@ class MainMessagesViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
     @Published var isUserCurrentlyLoggedOut = false
-    @Published var login = ""
     
     init() {
         DispatchQueue.main.async {
@@ -27,13 +26,20 @@ class MainMessagesViewModel: ObservableObject {
     
     @Published var recentMessages = [RecentMessage]()
     
-    private func fetchRecentMessages() {
+    private var firestoreListener: ListenerRegistration?
+    
+    func fetchRecentMessages() {
+        
+        firestoreListener?.remove()
+        self.recentMessages.removeAll()
+        
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        FirebaseManager.shared.firestore
-            .collection("recent_messages")
+        
+        firestoreListener = FirebaseManager.shared.firestore
+            .collection(FirebaseConstants.recentMessages)
             .document(uid)
-            .collection("messages")
-            .order(by: "timestamp")
+            .collection(FirebaseConstants.messages)
+            .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     self.errorMessage = "Failed to listen for recent messages: \(error)"
@@ -56,9 +62,6 @@ class MainMessagesViewModel: ObservableObject {
                     } catch {
                         print(error)
                     }
-                    
-//                    let data = change.document.data()
-//                    self.recentMessages.insert(.init(documentId: docId, data: data), at: 0)
                 })
             }
     }
@@ -66,28 +69,18 @@ class MainMessagesViewModel: ObservableObject {
     func fetchCurrentUser() {
         
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            errorMessage = "Could not find firebase uid"
+            self.errorMessage = "Could not find firebase uid"
             return
         }
         
         FirebaseManager.shared.firestore.collection("users").document(uid).getDocument { snapshot, error in
             if let error = error {
                 self.errorMessage = "Failed to fetch current user: \(error)"
+                print(error)
                 return
             }
-            
-            guard let data = snapshot?.data() else {
-                self.errorMessage = "No data found"
-                return
-            }
-            
-            self.chatUser = .init(data: data)
-            
-            self.login = self.chatUser?.email ?? ""
-            
-            if let range = self.login.range(of: "@") {
-                self.login.removeSubrange(range.lowerBound..<self.login.endIndex)
-            }
+            self.chatUser = try? snapshot?.data(as: ChatUser.self)
+            FirebaseManager.shared.currentUser = self.chatUser
         }
     }
     
@@ -99,21 +92,21 @@ class MainMessagesViewModel: ObservableObject {
 
 struct MainMessagesView: View {
     
+    @State var shouldShowLogOutOptions = false
+    @State var shouldNavigateToChatLogView = false
+    
     @ObservedObject private var vm = MainMessagesViewModel()
     
-    @State var shouldShowLogOutOptions = false
-    
-    @State var shouldNavigateToChatLogView = false
+    private var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
         NavigationView {
             VStack {
-//                Text("User: \(vm.chatUser?.uid ?? "")")
                 customNavBar
                 messagesView
                 
                 NavigationLink("", isActive: $shouldNavigateToChatLogView) {
-                    ChatLogView(chatUser: self.chatUser)
+                    ChatLogView(vm: chatLogViewModel)
                 }
             }
             .overlay(newMessageButton, alignment: .bottom)
@@ -137,8 +130,8 @@ struct MainMessagesView: View {
                 .shadow(radius: 5)
             
             VStack(alignment: .leading, spacing: 4) {
-                
-                Text(vm.login)
+                let email = vm.chatUser?.email ?? ""
+                Text(email)
                     .font(.system(size: 24, weight: .bold))
                 
                 HStack {
@@ -171,10 +164,11 @@ struct MainMessagesView: View {
                 .cancel()
             ])
         }
-        .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut) {
+        .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
             LoginView(didCompleteLoginProcess: {
                 self.vm.isUserCurrentlyLoggedOut = false
                 self.vm.fetchCurrentUser()
+                self.vm.fetchRecentMessages()
             })
         }
     }
@@ -183,8 +177,13 @@ struct MainMessagesView: View {
         ScrollView {
             ForEach(vm.recentMessages) { recentMessage in
                 VStack {
-                    NavigationLink {
-                        Text("Destination")
+                    Button {
+                        let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
+                        
+                        self.chatUser = .init(id: uid, uid: uid, email: recentMessage.email, profileImageUrl: recentMessage.profileImageUrl)
+                        self.chatLogViewModel.chatUser = self.chatUser
+                        self.chatLogViewModel.fetchMessages()
+                        self.shouldNavigateToChatLogView.toggle()
                     } label: {
                         HStack(spacing: 16) {
                             WebImage(url: URL(string: recentMessage.profileImageUrl))
@@ -245,6 +244,8 @@ struct MainMessagesView: View {
                 print(user.email)
                 self.shouldNavigateToChatLogView.toggle()
                 self.chatUser = user
+                self.chatLogViewModel.chatUser = user
+                self.chatLogViewModel.fetchMessages()
             })
         }
     }
