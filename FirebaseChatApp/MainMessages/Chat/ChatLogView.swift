@@ -17,21 +17,6 @@ struct FirebaseConstants {
     static let email = "email"
 }
 
-struct ChatMessage: Identifiable {
-    
-    var id: String { documentId }
-    
-    let documentId: String
-    let fromId, toId, text: String
-    
-    init(documentId: String, data: [String: Any]) {
-        self.documentId = documentId
-        self.fromId = data[FirebaseConstants.fromId] as? String ?? ""
-        self.toId = data[FirebaseConstants.toId] as? String ?? ""
-        self.text = data[FirebaseConstants.text] as? String ?? ""
-    }
-}
-
 class ChatLogViewModel: ObservableObject {
     
     @Published var chatText = ""
@@ -66,7 +51,15 @@ class ChatLogViewModel: ObservableObject {
                     if change.type == .added {
                         let data = change.document.data()
                         let docId = change.document.documentID
-                        self.chatMessages.append(.init(documentId: docId, data: data))
+                        
+                        do {
+                            let cm = try change.document.data(as: ChatMessage.self)
+                            self.chatMessages.append(cm)
+                        } catch {
+                            print(error)
+                        }
+                        
+//                        self.chatMessages.append(.init(documentId: docId, data: data))
                     }
                 })
                 DispatchQueue.main.async {
