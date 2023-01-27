@@ -73,7 +73,7 @@ class MainMessagesViewModel: ObservableObject {
             return
         }
         
-        FirebaseManager.shared.firestore.collection("users").document(uid).getDocument { snapshot, error in
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(uid).getDocument { snapshot, error in
             if let error = error {
                 self.errorMessage = "Failed to fetch current user: \(error)"
                 print(error)
@@ -100,17 +100,16 @@ struct MainMessagesView: View {
     private var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 customNavBar
                 messagesView
-                
-                NavigationLink("", isActive: $shouldNavigateToChatLogView) {
-                    ChatLogView(vm: chatLogViewModel)
-                }
             }
             .overlay(newMessageButton, alignment: .bottom)
             .navigationBarHidden(true)
+            .navigationDestination(isPresented: $shouldNavigateToChatLogView) {
+                ChatLogView(vm: chatLogViewModel)
+            }
         }
     }
     

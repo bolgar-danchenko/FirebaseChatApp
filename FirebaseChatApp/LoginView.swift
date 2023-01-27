@@ -172,15 +172,15 @@ struct LoginView: View {
     
     private func storeUserInformation(imageProfileUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let userData = ["email": self.email, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
-        FirebaseManager.shared.firestore.collection("users")
+        let userData = [FirebaseConstants.email: self.email, FirebaseConstants.uid: uid, FirebaseConstants.profileImageUrl: imageProfileUrl.absoluteString]
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.users)
             .document(uid).setData(userData) { error in
                 if let error = error {
                     print(error)
                     self.loginStatusMessage = "\(error)"
                     return
                 }
-                print("Success ")
+                print("Success")
                 
                 self.didCompleteLoginProcess()
             }

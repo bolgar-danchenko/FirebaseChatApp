@@ -82,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EA03392981BC0A002D394E /* Model */,
-				B5EA033329818EE8002D394E /* Utils */,
+				B5EA033329818EE8002D394E /* Firebase */,
 				B5EA0330298111A5002D394E /* MainMessages */,
 				B5EA031229803974002D394E /* FirebaseChatAppApp.swift */,
 				B5EA031429803974002D394E /* LoginView.swift */,
@@ -112,13 +112,13 @@
 			path = MainMessages;
 			sourceTree = "<group>";
 		};
-		B5EA033329818EE8002D394E /* Utils */ = {
+		B5EA033329818EE8002D394E /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				B5EA033429818EF4002D394E /* FirebaseManager.swift */,
 				B546A8DB29844014009349AC /* FirebaseConstants.swift */,
 			);
-			path = Utils;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		B5EA03392981BC0A002D394E /* Model */ = {
