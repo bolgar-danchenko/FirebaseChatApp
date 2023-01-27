@@ -14,6 +14,7 @@
 		B5EA032229804A45002D394E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B5EA032129804A45002D394E /* FirebaseAuth */; };
 		B5EA032429804A45002D394E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B5EA032329804A45002D394E /* FirebaseStorage */; };
 		B5EA032629804C44002D394E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5EA032529804C44002D394E /* GoogleService-Info.plist */; };
+		B5EA032829807000002D394E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA032729807000002D394E /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		B5EA031629803976002D394E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5EA031929803976002D394E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5EA032529804C44002D394E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5EA032729807000002D394E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				B5EA031229803974002D394E /* FirebaseChatAppApp.swift */,
 				B5EA031429803974002D394E /* LoginView.swift */,
+				B5EA032729807000002D394E /* ImagePicker.swift */,
 				B5EA032529804C44002D394E /* GoogleService-Info.plist */,
 				B5EA031629803976002D394E /* Assets.xcassets */,
 				B5EA031829803976002D394E /* Preview Content */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EA032829807000002D394E /* ImagePicker.swift in Sources */,
 				B5EA031529803974002D394E /* LoginView.swift in Sources */,
 				B5EA031329803974002D394E /* FirebaseChatAppApp.swift in Sources */,
 			);
