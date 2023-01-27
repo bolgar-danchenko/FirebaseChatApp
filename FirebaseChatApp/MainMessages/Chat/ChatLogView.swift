@@ -169,7 +169,7 @@ struct ChatLogView: View {
             messagesView
             Text(vm.errorMessage)
         }
-        .navigationTitle(vm.chatUser?.email ?? "")
+        .navigationTitle(vm.chatUser?.username ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
             vm.firestoreListener?.remove()

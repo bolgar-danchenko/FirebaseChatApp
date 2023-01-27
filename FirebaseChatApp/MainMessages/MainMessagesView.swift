@@ -129,8 +129,7 @@ struct MainMessagesView: View {
                 .shadow(radius: 5)
             
             VStack(alignment: .leading, spacing: 4) {
-                let email = vm.chatUser?.email ?? ""
-                Text(email)
+                Text(vm.chatUser?.username ?? "")
                     .font(.system(size: 24, weight: .bold))
                 
                 HStack {
