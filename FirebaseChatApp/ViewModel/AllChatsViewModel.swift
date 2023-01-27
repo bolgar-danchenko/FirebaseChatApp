@@ -77,8 +77,13 @@ class AllChatsViewModel: ObservableObject {
                 print(error)
                 return
             }
-            self.chatUser = try? snapshot?.data(as: ChatUser.self)
-            FirebaseManager.shared.currentUser = self.chatUser
+            
+            do {
+                self.chatUser = try snapshot?.data(as: ChatUser.self)
+                FirebaseManager.shared.currentUser = self.chatUser
+            } catch {
+                print(error)
+            }
         }
     }
     

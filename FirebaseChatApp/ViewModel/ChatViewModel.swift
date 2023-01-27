@@ -55,9 +55,6 @@ class ChatViewModel: ObservableObject {
                         }
                     }
                 })
-                DispatchQueue.main.async {
-                    self.count += 1
-                }
             }
     }
     
@@ -85,7 +82,6 @@ class ChatViewModel: ObservableObject {
             
             self.persistRecentMessage()
             self.chatText = ""
-            self.count += 1
         })
         
         let recipientMessageDocument = FirebaseManager.shared.firestore.collection(FirebaseConstants.messages)
@@ -155,6 +151,4 @@ class ChatViewModel: ObservableObject {
                 }
             }
     }
-    
-    @Published var count = 0
 }

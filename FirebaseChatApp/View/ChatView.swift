@@ -36,11 +36,6 @@ struct ChatView: View {
                     HStack { Spacer() }
                         .id(Self.emptyScrollToString)
                 }
-                .onReceive(vm.$count) { _ in
-                    withAnimation(.easeOut(duration: 0.5)) {
-                        scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
-                    }
-                }
             }
         }
         .background(Color(.init(white: 0.95, alpha: 1)))
