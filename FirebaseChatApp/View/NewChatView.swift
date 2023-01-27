@@ -8,40 +8,12 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-class CreateNewMessageViewModel: ObservableObject {
-    
-    @Published var users = [ChatUser]()
-    @Published var errorMessage = ""
-    
-    init() {
-        fetchAllUsers()
-    }
-    
-    private func fetchAllUsers() {
-        FirebaseManager.shared.firestore.collection(FirebaseConstants.users)
-            .getDocuments { documentsSnapshot, error in
-                if let error = error {
-                    self.errorMessage = "Failed to fetch users: \(error)"
-                    print("Failed to fetch users: \(error)")
-                    return
-                }
-                
-                documentsSnapshot?.documents.forEach({ snapshot in
-                    let user = try? snapshot.data(as: ChatUser.self)
-                    if user?.uid != FirebaseManager.shared.auth.currentUser?.uid {
-                        self.users.append(user!)
-                    }  
-                })
-            }
-    }
-}
-
-struct CreateNewMessageView: View {
+struct NewChatView: View {
     
     let didSelectNewUser: (ChatUser) -> ()
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var vm = CreateNewMessageViewModel()
+    @ObservedObject var vm = NewChatViewModel()
     
     var body: some View {
         NavigationView {
@@ -62,7 +34,7 @@ struct CreateNewMessageView: View {
                                 .cornerRadius(50)
                                 .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color(.label), lineWidth: 1))
                             
-                            Text(user.email)
+                            Text(user.username)
                                 .foregroundColor(Color(.label))
                             
                             Spacer()
@@ -88,8 +60,8 @@ struct CreateNewMessageView: View {
     }
 }
 
-struct CreateNewMessageView_Previews: PreviewProvider {
+struct NewChatView_Previews: PreviewProvider {
     static var previews: some View {
-        MainMessagesView()
+        AllChatsView()
     }
 }
