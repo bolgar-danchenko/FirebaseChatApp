@@ -18,6 +18,10 @@
 		B546A8E2298451B9009349AC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546A8E1298451B9009349AC /* MessageView.swift */; };
 		B546A8E4298452CD009349AC /* NewChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546A8E3298452CD009349AC /* NewChatViewModel.swift */; };
 		B546A8E629845413009349AC /* AllChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546A8E529845413009349AC /* AllChatsViewModel.swift */; };
+		B546A8EB2985479E009349AC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B546A8E82985479D009349AC /* Roboto-Bold.ttf */; };
+		B546A8EC2985479E009349AC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B546A8E92985479E009349AC /* Roboto-Regular.ttf */; };
+		B546A8ED2985479E009349AC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B546A8EA2985479E009349AC /* Roboto-Medium.ttf */; };
+		B546A8EF298547AF009349AC /* RobotoFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546A8EE298547AF009349AC /* RobotoFont.swift */; };
 		B5EA031329803974002D394E /* FirebaseChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA031229803974002D394E /* FirebaseChatAppApp.swift */; };
 		B5EA031529803974002D394E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA031429803974002D394E /* LoginView.swift */; };
 		B5EA031729803976002D394E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5EA031629803976002D394E /* Assets.xcassets */; };
@@ -40,6 +44,11 @@
 		B546A8E1298451B9009349AC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B546A8E3298452CD009349AC /* NewChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewModel.swift; sourceTree = "<group>"; };
 		B546A8E529845413009349AC /* AllChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChatsViewModel.swift; sourceTree = "<group>"; };
+		B546A8E82985479D009349AC /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		B546A8E92985479E009349AC /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B546A8EA2985479E009349AC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B546A8EE298547AF009349AC /* RobotoFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotoFont.swift; sourceTree = "<group>"; };
+		B546A8F029854813009349AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B5EA030F29803974002D394E /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EA031229803974002D394E /* FirebaseChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChatAppApp.swift; sourceTree = "<group>"; };
 		B5EA031429803974002D394E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -84,13 +93,24 @@
 			isa = PBXGroup;
 			children = (
 				B5EA031429803974002D394E /* LoginView.swift */,
-				B5EA032729807000002D394E /* ImagePicker.swift */,
+				B5EA0331298111B6002D394E /* AllChatsView.swift */,
 				B546A8E1298451B9009349AC /* MessageView.swift */,
 				B5EA03402982943B002D394E /* ChatView.swift */,
 				B5EA033D2982550A002D394E /* NewChatView.swift */,
-				B5EA0331298111B6002D394E /* AllChatsView.swift */,
+				B5EA032729807000002D394E /* ImagePicker.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B546A8E729854753009349AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B546A8E82985479D009349AC /* Roboto-Bold.ttf */,
+				B546A8EA2985479E009349AC /* Roboto-Medium.ttf */,
+				B546A8E92985479E009349AC /* Roboto-Regular.ttf */,
+				B546A8EE298547AF009349AC /* RobotoFont.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B5EA030629803973002D394E = {
@@ -112,6 +132,8 @@
 		B5EA031129803974002D394E /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				B546A8F029854813009349AC /* Info.plist */,
+				B546A8E729854753009349AC /* Fonts */,
 				B5EA033329818EE8002D394E /* Firebase */,
 				B5EA03392981BC0A002D394E /* Model */,
 				B546A8E029845187009349AC /* View */,
@@ -222,6 +244,9 @@
 			files = (
 				B5EA031A29803976002D394E /* Preview Assets.xcassets in Resources */,
 				B5EA031729803976002D394E /* Assets.xcassets in Resources */,
+				B546A8ED2985479E009349AC /* Roboto-Medium.ttf in Resources */,
+				B546A8EC2985479E009349AC /* Roboto-Regular.ttf in Resources */,
+				B546A8EB2985479E009349AC /* Roboto-Bold.ttf in Resources */,
 				B5EA032629804C44002D394E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +265,7 @@
 				B5EA032829807000002D394E /* ImagePicker.swift in Sources */,
 				B546A8E2298451B9009349AC /* MessageView.swift in Sources */,
 				B5EA0332298111B6002D394E /* AllChatsView.swift in Sources */,
+				B546A8EF298547AF009349AC /* RobotoFont.swift in Sources */,
 				B5EA033529818EF4002D394E /* FirebaseManager.swift in Sources */,
 				B5EA033E2982550A002D394E /* NewChatView.swift in Sources */,
 				B546A8E4298452CD009349AC /* NewChatViewModel.swift in Sources */,
@@ -379,6 +405,7 @@
 				DEVELOPMENT_TEAM = J6J4USC39N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FirebaseChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -408,6 +435,7 @@
 				DEVELOPMENT_TEAM = J6J4USC39N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FirebaseChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

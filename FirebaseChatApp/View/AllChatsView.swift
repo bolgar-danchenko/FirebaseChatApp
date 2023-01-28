@@ -23,6 +23,7 @@ struct AllChatsView: View {
                 customNavBar
                 messagesView
             }
+            .background(Color("background"))
             .overlay(newMessageButton, alignment: .bottom)
             .navigationBarHidden(true)
             .navigationDestination(isPresented: $shouldNavigateToChatLogView) {
@@ -47,7 +48,7 @@ struct AllChatsView: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.chatUser?.username ?? "")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.custom(boldFont, size: 24))
                 
                 HStack {
                     Circle()
@@ -55,7 +56,7 @@ struct AllChatsView: View {
                         .frame(width: 14, height: 14)
                     
                     Text("online")
-                        .font(.system(size: 12))
+                        .font(.custom(regularFont, size: 14))
                         .foregroundColor(Color(.lightGray))
                 }
             }
@@ -64,9 +65,9 @@ struct AllChatsView: View {
             Button {
                 shouldShowLogOutOptions.toggle()
             } label: {
-                Image(systemName: "gear")
+                Image(systemName: "rectangle.portrait.and.arrow.right")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color(.label))
+                    .foregroundColor(Color("blue"))
             }
         }
         .padding()
@@ -111,19 +112,20 @@ struct AllChatsView: View {
                                 .shadow(radius: 5)
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(recentMessage.username)
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.custom(boldFont, size: 18))
                                     .foregroundColor(Color(.label))
                                     .multilineTextAlignment(.leading)
                                 Text(recentMessage.text)
-                                    .font(.system(size: 14))
+                                    .font(.custom(regularFont, size: 16))
                                     .foregroundColor(Color(.darkGray))
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
                             
                             Text(recentMessage.timeAgo)
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color(.label))
+//                                .font(.system(size: 14, weight: .semibold))
+                                .font(.custom(mediumFont, size: 14))
+                                .foregroundColor(Color("blue"))
                         }
                     }
                     Divider()
@@ -143,16 +145,12 @@ struct AllChatsView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("+ New Message")
-                    .font(.system(size: 16, weight: .bold))
-                Spacer()
+                Image(systemName: "message.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(Color("blue"))
+                    .padding(.trailing, 20)
+                    .shadow(color: Color("blue").opacity(0.3), radius: 5)
             }
-            .foregroundColor(.white)
-            .padding(.vertical)
-            .background(Color.blue)
-            .cornerRadius(32)
-            .padding(.horizontal)
-            .shadow(radius: 15)
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
             NewChatView(didSelectNewUser: { user in
