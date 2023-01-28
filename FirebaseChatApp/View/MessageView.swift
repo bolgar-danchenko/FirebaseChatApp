@@ -18,20 +18,22 @@ struct MessageView: View {
                     Spacer()
                     HStack {
                         Text(message.text)
+                            .font(.custom(regularFont, size: 18))
                             .foregroundColor(.white)
                     }
                     .padding()
-                    .background(Color.blue)
+                    .background(Color("blue"))
                     .cornerRadius(8)
                 }
             } else {
                 HStack {
                     HStack {
                         Text(message.text)
+                            .font(.custom(regularFont, size: 18))
                             .foregroundColor(Color(.label))
                     }
                     .padding()
-                    .background(Color.white)
+                    .background(Color("messageBubble"))
                     .cornerRadius(8)
                     Spacer()
                 }

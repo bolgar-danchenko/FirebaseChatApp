@@ -14,7 +14,6 @@ struct ChatView: View {
     var body: some View {
         ZStack {
             messagesView
-            Text(vm.errorMessage)
         }
         .navigationTitle(vm.chatUser?.username ?? "")
         .navigationBarTitleDisplayMode(.inline)
@@ -34,6 +33,11 @@ struct ChatView: View {
                     }
                     HStack { Spacer() }
                         .id(Self.emptyScrollToString)
+                }
+                .onReceive(vm.$shouldScroll) { _ in
+                    withAnimation(.easeOut(duration: 0.5)) {
+                        scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                    }
                 }
             }
         }
@@ -59,6 +63,7 @@ struct ChatView: View {
             
             Button {
                 vm.handleSend()
+                vm.shouldScroll = true
             } label: {
                 Text("Send")
                     .foregroundColor(.white)

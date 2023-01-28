@@ -12,6 +12,7 @@ class ChatViewModel: ObservableObject {
     @Published var chatText = ""
     @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
+    @Published var shouldScroll = false
     
     var chatUser: ChatUser?
     
@@ -54,11 +55,14 @@ class ChatViewModel: ObservableObject {
                         }
                     }
                 })
+                DispatchQueue.main.async {
+                    self.shouldScroll = true
+                }
             }
     }
     
     func handleSend() {
-        print(chatText)
+        
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
         guard let toId = chatUser?.uid else { return }

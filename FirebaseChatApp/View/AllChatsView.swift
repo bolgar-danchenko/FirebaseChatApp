@@ -41,10 +41,7 @@ struct AllChatsView: View {
                 .frame(width: 50, height: 50)
                 .clipped()
                 .cornerRadius(50)
-                .overlay(RoundedRectangle(cornerRadius: 44)
-                    .stroke(Color(.label), lineWidth: 1)
-                )
-                .shadow(radius: 5)
+                .shadow(color: Color("blue"), radius: 5)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(vm.chatUser?.username ?? "")
@@ -108,8 +105,7 @@ struct AllChatsView: View {
                                 .frame(width: 64, height: 64)
                                 .clipped()
                                 .cornerRadius(64)
-                                .overlay(RoundedRectangle(cornerRadius: 64).stroke(Color(.label), lineWidth: 1))
-                                .shadow(radius: 5)
+                                .shadow(color: Color("blue"), radius: 3)
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(recentMessage.username)
                                     .font(.custom(boldFont, size: 18))
@@ -127,9 +123,11 @@ struct AllChatsView: View {
                                 .font(.custom(mediumFont, size: 14))
                                 .foregroundColor(Color("blue"))
                         }
+                        .frame(maxWidth: .infinity, maxHeight: 80)
+                        .padding(.vertical, 5)
                     }
                     Divider()
-                        .padding(.vertical, 8)
+//                        .padding(.vertical, 1)
                 }
                 .padding(.horizontal)
             }
@@ -145,11 +143,18 @@ struct AllChatsView: View {
         } label: {
             HStack {
                 Spacer()
-                Image(systemName: "message.circle.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(Color("blue"))
-                    .padding(.trailing, 20)
-                    .shadow(color: Color("blue").opacity(0.3), radius: 5)
+                ZStack {
+                    Circle()
+                        .frame(width: 80, height: 80)
+                        .foregroundColor(Color("background"))
+                        .shadow(color: Color("blue"), radius: 5)
+                    
+                    Image("message")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                }
+                .padding(.trailing, 30)
             }
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
@@ -169,5 +174,6 @@ struct AllChatsView: View {
 struct AllChatsView_Previews: PreviewProvider {
     static var previews: some View {
         AllChatsView()
+//            .preferredColorScheme(.dark)
     }
 }
