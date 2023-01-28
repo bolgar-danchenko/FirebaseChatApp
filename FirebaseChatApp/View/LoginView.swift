@@ -70,16 +70,16 @@ struct LoginView: View {
                     .font(.custom(mediumFont, size: 24))
                 
                 // Custom text field
-                CustomTextField(icon: "envelope", title: "Login", hint: "joe.smith@gmail.com", value: $email, showPassword: $showPassword)
+                CustomTextField(icon: "envelope.fill", title: "Email", hint: "joe.smith@gmail.com", value: $email, showPassword: $showPassword)
                     .padding(.top, 50)
                 
-                CustomTextField(icon: "lock", title: "Password", hint: "123456", value: $password, showPassword: $showPassword)
+                CustomTextField(icon: "lock.fill", title: "Password", hint: "123456", value: $password, showPassword: $showPassword)
                     .padding(.top, 10)
                 
                 // Register reenter password
                 
                 if !isLoginMode {
-                    CustomTextField(icon: "lock", title: "Re-Enter Password", hint: "123456", value: $reEnterPassword, showPassword: $showReEnterPassword)
+                    CustomTextField(icon: "lock.fill", title: "Re-Enter Password", hint: "123456", value: $reEnterPassword, showPassword: $showReEnterPassword)
                         .padding(.top, 10)
                 }
                 
@@ -87,7 +87,7 @@ struct LoginView: View {
                 Button {
                     handleAction()
                 } label: {
-                    Text(isLoginMode ? "Sign In" : "Create Account")
+                    Text(isLoginMode ? "Log In" : "Create Account")
                         .font(.custom(boldFont, size: 20))
                         .padding(.vertical, 20)
                         .frame(maxWidth: .infinity)
@@ -106,7 +106,7 @@ struct LoginView: View {
                         loginStatusMessage = ""
                     }
                 } label: {
-                    Text(isLoginMode ? "Create Account" : "Back to Sign In")
+                    Text(isLoginMode ? "Create Account" : "Back to Log In")
                         .font(.custom(mediumFont, size: 16))
                         .foregroundColor(Color("blue"))
                 }

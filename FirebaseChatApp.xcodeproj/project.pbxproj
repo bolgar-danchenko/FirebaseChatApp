@@ -22,6 +22,7 @@
 		B546A8EC2985479E009349AC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B546A8E92985479E009349AC /* Roboto-Regular.ttf */; };
 		B546A8ED2985479E009349AC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B546A8EA2985479E009349AC /* Roboto-Medium.ttf */; };
 		B546A8EF298547AF009349AC /* RobotoFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546A8EE298547AF009349AC /* RobotoFont.swift */; };
+		B546A8F22985C976009349AC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B546A8F12985C976009349AC /* Launch Screen.storyboard */; };
 		B5EA031329803974002D394E /* FirebaseChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA031229803974002D394E /* FirebaseChatAppApp.swift */; };
 		B5EA031529803974002D394E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA031429803974002D394E /* LoginView.swift */; };
 		B5EA031729803976002D394E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5EA031629803976002D394E /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		B546A8EA2985479E009349AC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		B546A8EE298547AF009349AC /* RobotoFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotoFont.swift; sourceTree = "<group>"; };
 		B546A8F029854813009349AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B546A8F12985C976009349AC /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B5EA030F29803974002D394E /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EA031229803974002D394E /* FirebaseChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChatAppApp.swift; sourceTree = "<group>"; };
 		B5EA031429803974002D394E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				B546A8DD298450FE009349AC /* ViewModel */,
 				B5EA031229803974002D394E /* FirebaseChatAppApp.swift */,
 				B5EA032529804C44002D394E /* GoogleService-Info.plist */,
+				B546A8F12985C976009349AC /* Launch Screen.storyboard */,
 				B5EA031629803976002D394E /* Assets.xcassets */,
 				B5EA031829803976002D394E /* Preview Content */,
 			);
@@ -248,6 +251,7 @@
 				B546A8EC2985479E009349AC /* Roboto-Regular.ttf in Resources */,
 				B546A8EB2985479E009349AC /* Roboto-Bold.ttf in Resources */,
 				B5EA032629804C44002D394E /* GoogleService-Info.plist in Resources */,
+				B546A8F22985C976009349AC /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -439,6 +444,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
