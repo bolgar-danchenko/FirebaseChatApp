@@ -5,7 +5,6 @@
 //  Created by Konstantin Bolgar-Danchenko on 27.01.2023.
 //
 
-import Foundation
 import FirebaseFirestore
 
 class AllChatsViewModel: ObservableObject {

@@ -7,8 +7,6 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct AllChatsView: View {
     
@@ -36,7 +34,6 @@ struct AllChatsView: View {
     private var customNavBar: some View {
         
         HStack(spacing: 16) {
-            
             WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                 .resizable()
                 .scaledToFill()

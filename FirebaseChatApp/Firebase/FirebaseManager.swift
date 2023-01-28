@@ -5,7 +5,6 @@
 //  Created by Konstantin Bolgar-Danchenko on 25.01.2023.
 //
 
-import Foundation
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
@@ -29,6 +28,4 @@ class FirebaseManager: NSObject {
         
         super.init()
     }
-    
-    
 }

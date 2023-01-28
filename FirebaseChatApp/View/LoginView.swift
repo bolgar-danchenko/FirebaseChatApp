@@ -13,10 +13,12 @@ import FirebaseFirestore
 struct LoginView: View {
     
     let didCompleteLoginProcess: () -> ()
+    @State var loginStatusMessage = ""
     
     @State private var isLoginMode = false
     @State private var email = ""
     @State private var password = ""
+    @State var image: UIImage?
     
     @State var shouldShowImagePicker = false
     
@@ -97,8 +99,6 @@ struct LoginView: View {
         }
     }
     
-    @State var image: UIImage?
-    
     private func handleAction() {
         if isLoginMode {
             loginUser()
@@ -121,8 +121,6 @@ struct LoginView: View {
             self.didCompleteLoginProcess()
         }
     }
-    
-    @State var loginStatusMessage = ""
     
     private func createNewAccount() {
         
@@ -190,7 +188,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(didCompleteLoginProcess: {
-            
         })
     }
 }

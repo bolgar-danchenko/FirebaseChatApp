@@ -5,8 +5,6 @@
 //  Created by Konstantin Bolgar-Danchenko on 27.01.2023.
 //
 
-import Foundation
-
 struct FirebaseConstants {
     static let fromId = "fromId"
     static let toId = "toId"
