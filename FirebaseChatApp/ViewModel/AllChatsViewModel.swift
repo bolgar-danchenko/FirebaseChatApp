@@ -37,7 +37,7 @@ class AllChatsViewModel: ObservableObject {
             .collection(FirebaseConstants.messages)
             .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
-                if let error = error {
+                if let error {
                     print("Failed to listen for recent messages: \(error)")
                     return
                 }
@@ -68,7 +68,7 @@ class AllChatsViewModel: ObservableObject {
         }
         
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(uid).getDocument { snapshot, error in
-            if let error = error {
+            if let error {
                 print("Failed to fetch current user: \(error)")
                 return
             }

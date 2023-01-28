@@ -37,7 +37,7 @@ class ChatViewModel: ObservableObject {
             .collection(toId)
             .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
-                if let error = error {
+                if let error {
                     print("Failed to listen for messages: \(error)")
                     return
                 }
@@ -72,7 +72,7 @@ class ChatViewModel: ObservableObject {
         let msg = ChatMessage(id: nil, fromId: fromId, toId: toId, text: chatText, timestamp: Date())
         
         try? document.setData(from: msg, completion: { error in
-            if let error = error {
+            if let error {
                 print("Failed to save message into Firestore: \(error)")
                 return
             }
@@ -87,7 +87,7 @@ class ChatViewModel: ObservableObject {
             .document()
         
         try? recipientMessageDocument.setData(from: msg, completion: { error in
-            if let error = error {
+            if let error {
                 print("Failed to save message into Firestore: \(error)")
                 return
             }
@@ -116,7 +116,7 @@ class ChatViewModel: ObservableObject {
         ] as [String : Any]
         
         document.setData(data) { error in
-            if let error = error {
+            if let error {
                 print("Failed to save recent message: \(error)")
                 return
             }
@@ -138,7 +138,7 @@ class ChatViewModel: ObservableObject {
             .collection(FirebaseConstants.messages)
             .document(currentUser.uid)
             .setData(recipientRecentMessageDictionary) { error in
-                if let error = error {
+                if let error {
                     print("Failed to save recipient recent message: \(error)")
                     return
                 }

@@ -18,7 +18,7 @@ class NewChatViewModel: ObservableObject {
     private func fetchAllUsers() {
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users)
             .getDocuments { documentsSnapshot, error in
-                if let error = error {
+                if let error {
                     print("Failed to fetch users: \(error)")
                     return
                 }

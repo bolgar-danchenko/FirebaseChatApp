@@ -109,7 +109,7 @@ struct LoginView: View {
     
     private func loginUser() {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
+            if let error {
                 print("Failed to login user:", error)
                 self.loginStatusMessage = "Failed to login user: \(error)"
                 return
@@ -127,7 +127,7 @@ struct LoginView: View {
         }
         
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
+            if let error {
                 print("Failed to create user:", error)
                 self.loginStatusMessage = "Failed to create user: \(error)"
                 return
@@ -142,13 +142,14 @@ struct LoginView: View {
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
         ref.putData(imageData, metadata: nil) { metadata, error in
-            if let error = error {
+            
+            if let error {
                 self.loginStatusMessage = "Failed to push image to Storage: \(error)"
                 return
             }
             
             ref.downloadURL { url, error in
-                if let error = error {
+                if let error {
                     self.loginStatusMessage = "Failed to retrieve downloadUrl: \(error)"
                     return
                 }
@@ -164,7 +165,7 @@ struct LoginView: View {
         let userData = [FirebaseConstants.email: self.email, FirebaseConstants.uid: uid, FirebaseConstants.profileImageUrl: imageProfileUrl.absoluteString]
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users)
             .document(uid).setData(userData) { error in
-                if let error = error {
+                if let error {
                     print(error)
                     self.loginStatusMessage = "\(error)"
                     return
