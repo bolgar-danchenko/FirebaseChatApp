@@ -115,9 +115,6 @@ struct LoginView: View {
                 return
             }
             
-            print("Successfully logged in as user: \(result?.user.uid ?? "")")
-            loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
-            
             self.didCompleteLoginProcess()
         }
     }
@@ -135,9 +132,6 @@ struct LoginView: View {
                 self.loginStatusMessage = "Failed to create user: \(error)"
                 return
             }
-            
-            print("Successfully created user: \(result?.user.uid ?? "")")
-            loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
             
             persistImageToStorage()
         }
@@ -159,9 +153,6 @@ struct LoginView: View {
                     return
                 }
                 
-                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url ?? "no url")
-                
                 guard let url = url else { return }
                 self.storeUserInformation(imageProfileUrl: url)
             }
@@ -178,7 +169,6 @@ struct LoginView: View {
                     self.loginStatusMessage = "\(error)"
                     return
                 }
-                print("Success")
                 
                 self.didCompleteLoginProcess()
             }

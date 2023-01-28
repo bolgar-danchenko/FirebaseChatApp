@@ -18,8 +18,6 @@ struct NewChatView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Text(vm.errorMessage)
-                
                 ForEach(vm.users) { user in
                     Button {
                         presentationMode.wrappedValue.dismiss()

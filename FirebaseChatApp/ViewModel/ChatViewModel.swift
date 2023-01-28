@@ -10,7 +10,6 @@ import FirebaseFirestore
 class ChatViewModel: ObservableObject {
     
     @Published var chatText = ""
-    @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
     @Published var shouldScroll = false
     
@@ -39,8 +38,7 @@ class ChatViewModel: ObservableObject {
             .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
-                    self.errorMessage = "Failed to listen for messages: \(error)"
-                    print(error)
+                    print("Failed to listen for messages: \(error)")
                     return
                 }
                 
@@ -49,7 +47,6 @@ class ChatViewModel: ObservableObject {
                         do {
                             let cm = try change.document.data(as: ChatMessage.self)
                             self.chatMessages.append(cm)
-                            print("Appending chatMessage in ChatLogView: \(Date())")
                         } catch {
                             print("Failed to decode message: \(error)")
                         }
@@ -76,12 +73,9 @@ class ChatViewModel: ObservableObject {
         
         try? document.setData(from: msg, completion: { error in
             if let error = error {
-                print(error)
-                self.errorMessage = "Failed to save message into Firestore: \(error)"
+                print("Failed to save message into Firestore: \(error)")
                 return
             }
-            
-            print("Successfully saved current user sending message")
             
             self.persistRecentMessage()
             self.chatText = ""
@@ -94,12 +88,9 @@ class ChatViewModel: ObservableObject {
         
         try? recipientMessageDocument.setData(from: msg, completion: { error in
             if let error = error {
-                print(error)
-                self.errorMessage = "Failed to save message into Firestore: \(error)"
+                print("Failed to save message into Firestore: \(error)")
                 return
             }
-            
-            print("Recipient saved message as well")
         })
     }
     
@@ -126,7 +117,6 @@ class ChatViewModel: ObservableObject {
         
         document.setData(data) { error in
             if let error = error {
-                self.errorMessage = "Failed to save recent message: \(error)"
                 print("Failed to save recent message: \(error)")
                 return
             }

@@ -9,7 +9,6 @@ import FirebaseFirestore
 
 class AllChatsViewModel: ObservableObject {
     
-    @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
     @Published var isUserCurrentlyLoggedOut = false
     
@@ -39,8 +38,7 @@ class AllChatsViewModel: ObservableObject {
             .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
-                    self.errorMessage = "Failed to listen for recent messages: \(error)"
-                    print(error)
+                    print("Failed to listen for recent messages: \(error)")
                     return
                 }
                 
@@ -66,14 +64,12 @@ class AllChatsViewModel: ObservableObject {
     func fetchCurrentUser() {
         
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            self.errorMessage = "Could not find firebase uid"
             return
         }
         
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(uid).getDocument { snapshot, error in
             if let error = error {
-                self.errorMessage = "Failed to fetch current user: \(error)"
-                print(error)
+                print("Failed to fetch current user: \(error)")
                 return
             }
             
