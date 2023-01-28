@@ -106,20 +106,21 @@ struct AllChatsView: View {
                                 .clipped()
                                 .cornerRadius(64)
                                 .shadow(color: Color("blue"), radius: 3)
+                            
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(recentMessage.username)
                                     .font(.custom(boldFont, size: 18))
                                     .foregroundColor(Color(.label))
                                     .multilineTextAlignment(.leading)
+                                
                                 Text(recentMessage.text)
                                     .font(.custom(regularFont, size: 16))
-                                    .foregroundColor(Color(.darkGray))
+                                    .foregroundColor(Color(.secondaryLabel))
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
                             
                             Text(recentMessage.timeAgo)
-//                                .font(.system(size: 14, weight: .semibold))
                                 .font(.custom(mediumFont, size: 14))
                                 .foregroundColor(Color("blue"))
                         }
@@ -127,7 +128,7 @@ struct AllChatsView: View {
                         .padding(.vertical, 5)
                     }
                     Divider()
-//                        .padding(.vertical, 1)
+                        .background(Color(.secondaryLabel))
                 }
                 .padding(.horizontal)
             }
@@ -174,6 +175,6 @@ struct AllChatsView: View {
 struct AllChatsView_Previews: PreviewProvider {
     static var previews: some View {
         AllChatsView()
-//            .preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
     }
 }

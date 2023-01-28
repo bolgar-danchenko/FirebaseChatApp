@@ -32,17 +32,18 @@ struct NewChatView: View {
                                 .frame(width: 50, height: 50)
                                 .clipped()
                                 .cornerRadius(50)
-                                .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color(.label), lineWidth: 1))
+                                .shadow(color: Color("blue"), radius: 3)
                             
                             Text(user.username)
+                                .font(.custom(boldFont, size: 18))
                                 .foregroundColor(Color(.label))
-                            
+                                .multilineTextAlignment(.leading)
                             Spacer()
                         }
                         .padding(.horizontal)
                     }
                     Divider()
-                        .padding(.vertical, 8)
+                        .background(Color(.secondaryLabel))
                 }
             }
             .navigationTitle("New Message")
@@ -52,16 +53,20 @@ struct NewChatView: View {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
+                            .font(.custom(regularFont, size: 18))
                     }
-
                 }
             }
+            .background(Color("background"))
         }
     }
 }
 
 struct NewChatView_Previews: PreviewProvider {
     static var previews: some View {
-        AllChatsView()
+        NewChatView(didSelectNewUser: { _ in
+            
+        })
+        .preferredColorScheme(.dark)
     }
 }

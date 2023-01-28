@@ -41,7 +41,7 @@ struct ChatView: View {
                 }
             }
         }
-        .background(Color(.init(white: 0.95, alpha: 1)))
+        .background(Color("background"))
         .safeAreaInset(edge: .bottom) {
             chatBottomBar
                 .background(Color(.systemBackground).ignoresSafeArea())
@@ -49,15 +49,13 @@ struct ChatView: View {
     }
     
     private var chatBottomBar: some View {
-        HStack(spacing: 16) {
-            Image(systemName: "photo.on.rectangle")
-                .font(.system(size: 24))
-                .foregroundColor(Color(.darkGray))
-            
+        HStack(spacing: 20) {
             ZStack {
                 DescriptionPlaceholder()
                 TextEditor(text: $vm.chatText)
-                    .opacity(vm.chatText.isEmpty ? 0.5 : 1)
+                    .padding(.leading, 5)
+                    .opacity(vm.chatText.isEmpty ? 0.1 : 1)
+                RoundedRectangle(cornerRadius: 8).stroke(Color(.secondaryLabel), lineWidth: 0.5)
             }
             .frame(height: 40)
             
@@ -65,13 +63,13 @@ struct ChatView: View {
                 vm.handleSend()
                 vm.shouldScroll = true
             } label: {
-                Text("Send")
-                    .foregroundColor(.white)
+                Image("message")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 35, height: 35)
             }
-            .padding(.horizontal)
+//            .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(Color.blue)
-            .cornerRadius(4)
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
@@ -81,11 +79,10 @@ struct ChatView: View {
 private struct DescriptionPlaceholder: View {
     var body: some View {
         HStack {
-            Text("Description")
-                .foregroundColor(.gray)
-                .font(.system(size: 17))
-                .padding(.leading, 5)
-                .padding(.top, -4)
+            Text("Message")
+                .foregroundColor(Color(.secondaryLabel))
+                .font(.custom(regularFont, size: 18))
+                .padding(.leading, 10)
             Spacer()
         }
     }
@@ -94,5 +91,6 @@ private struct DescriptionPlaceholder: View {
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         AllChatsView()
+//            .preferredColorScheme(.dark)
     }
 }
