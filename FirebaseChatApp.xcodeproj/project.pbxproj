@@ -134,16 +134,16 @@
 		B5EA031129803974002D394E /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
-				B546A8F029854813009349AC /* Info.plist */,
-				B546A8E729854753009349AC /* Fonts */,
+				B546A8F12985C976009349AC /* Launch Screen.storyboard */,
+				B5EA031229803974002D394E /* FirebaseChatAppApp.swift */,
 				B5EA033329818EE8002D394E /* Firebase */,
 				B5EA03392981BC0A002D394E /* Model */,
 				B546A8E029845187009349AC /* View */,
 				B546A8DD298450FE009349AC /* ViewModel */,
-				B5EA031229803974002D394E /* FirebaseChatAppApp.swift */,
-				B5EA032529804C44002D394E /* GoogleService-Info.plist */,
-				B546A8F12985C976009349AC /* Launch Screen.storyboard */,
 				B5EA031629803976002D394E /* Assets.xcassets */,
+				B546A8E729854753009349AC /* Fonts */,
+				B546A8F029854813009349AC /* Info.plist */,
+				B5EA032529804C44002D394E /* GoogleService-Info.plist */,
 				B5EA031829803976002D394E /* Preview Content */,
 			);
 			path = FirebaseChatApp;

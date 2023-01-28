@@ -52,7 +52,7 @@ struct LoginView: View {
                                     .frame(width: 90, height: 90)
                                     .cornerRadius(64)
                             } else {
-                                Image(systemName: "person")
+                                Image(systemName: "person.fill")
                                     .font(.system(size: 64))
                                     .padding()
                                     .foregroundColor(Color("blue"))
@@ -68,6 +68,7 @@ struct LoginView: View {
                 
                 Text(isLoginMode ? "Welcome to Chat" : "Choose Profile Image")
                     .font(.custom(mediumFont, size: 24))
+                    .padding(.top, 10)
                 
                 // Custom text field
                 CustomTextField(icon: "envelope.fill", title: "Email", hint: "joe.smith@gmail.com", value: $email, showPassword: $showPassword)

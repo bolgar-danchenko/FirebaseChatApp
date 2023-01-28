@@ -60,15 +60,16 @@ struct ChatView: View {
             .frame(height: 40)
             
             Button {
-                vm.handleSend()
-                vm.shouldScroll = true
+                if !vm.chatText.isEmpty {
+                    vm.handleSend()
+                    vm.shouldScroll = true
+                }
             } label: {
                 Image("message")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35, height: 35)
             }
-//            .padding(.horizontal)
             .padding(.vertical, 8)
         }
         .padding(.horizontal)

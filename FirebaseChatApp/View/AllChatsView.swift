@@ -25,7 +25,6 @@ struct AllChatsView: View {
             }
             .background(Color("background"))
             .overlay(newMessageButton, alignment: .bottom)
-            .navigationBarHidden(true)
             .navigationDestination(isPresented: $shouldNavigateToChatLogView) {
                 ChatView(vm: chatLogViewModel)
             }
@@ -63,7 +62,7 @@ struct AllChatsView: View {
                 shouldShowLogOutOptions.toggle()
             } label: {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: 20, weight: .light))
                     .foregroundColor(Color("blue"))
             }
         }
@@ -132,7 +131,7 @@ struct AllChatsView: View {
                 .padding(.horizontal)
             }
         }
-        .padding(.bottom, 50)
+//        .padding(.bottom, 50)
     }
     
     @State var shouldShowNewMessageScreen = false
@@ -173,6 +172,6 @@ struct AllChatsView: View {
 struct AllChatsView_Previews: PreviewProvider {
     static var previews: some View {
         AllChatsView()
-            .preferredColorScheme(.dark)
+//            .preferredColorScheme(.dark)
     }
 }

@@ -60,6 +60,9 @@ class ChatViewModel: ObservableObject {
     
     func handleSend() {
         
+        let text = chatText
+        chatText = ""
+        
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
         guard let toId = chatUser?.uid else { return }
@@ -69,16 +72,15 @@ class ChatViewModel: ObservableObject {
             .collection(toId)
             .document()
         
-        let msg = ChatMessage(id: nil, fromId: fromId, toId: toId, text: chatText, timestamp: Date())
+        let message = ChatMessage(id: nil, fromId: fromId, toId: toId, text: text, timestamp: Date())
         
-        try? document.setData(from: msg, completion: { error in
+        try? document.setData(from: message, completion: { error in
             if let error {
                 print("Failed to save message into Firestore: \(error)")
                 return
             }
             
-            self.persistRecentMessage()
-            self.chatText = ""
+            self.persistRecentMessage(text: text)
         })
         
         let recipientMessageDocument = FirebaseManager.shared.firestore.collection(FirebaseConstants.messages)
@@ -86,7 +88,7 @@ class ChatViewModel: ObservableObject {
             .collection(fromId)
             .document()
         
-        try? recipientMessageDocument.setData(from: msg, completion: { error in
+        try? recipientMessageDocument.setData(from: message, completion: { error in
             if let error {
                 print("Failed to save message into Firestore: \(error)")
                 return
@@ -94,7 +96,7 @@ class ChatViewModel: ObservableObject {
         })
     }
     
-    private func persistRecentMessage() {
+    private func persistRecentMessage(text: String) {
         guard let chatUser = chatUser else { return }
         
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
@@ -108,7 +110,7 @@ class ChatViewModel: ObservableObject {
         
         let data = [
             FirebaseConstants.timestamp: Timestamp(),
-            FirebaseConstants.text: self.chatText,
+            FirebaseConstants.text: text,
             FirebaseConstants.fromId: uid,
             FirebaseConstants.toId: toId,
             FirebaseConstants.profileImageUrl: chatUser.profileImageUrl,
@@ -125,7 +127,7 @@ class ChatViewModel: ObservableObject {
         guard let currentUser = FirebaseManager.shared.currentUser else { return }
         let recipientRecentMessageDictionary = [
             FirebaseConstants.timestamp: Timestamp(),
-            FirebaseConstants.text: self.chatText,
+            FirebaseConstants.text: text,
             FirebaseConstants.fromId: uid,
             FirebaseConstants.toId: toId,
             FirebaseConstants.profileImageUrl: currentUser.profileImageUrl,

@@ -38,20 +38,26 @@ struct NewChatView: View {
                                 .multilineTextAlignment(.leading)
                             Spacer()
                         }
-                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, maxHeight: 80)
+                        .padding(.vertical, 5)
                     }
                     Divider()
                         .background(Color(.secondaryLabel))
                 }
+                .padding(.horizontal)
             }
-            .navigationTitle("New Message")
+            .navigationTitle("Contacts")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("Cancel")
-                            .font(.custom(regularFont, size: 18))
+                        HStack {
+                            Image(systemName: "chevron.left")
+                            
+                            Text("Back")
+                                .font(.custom(regularFont, size: 18))
+                        }
                     }
                 }
             }
