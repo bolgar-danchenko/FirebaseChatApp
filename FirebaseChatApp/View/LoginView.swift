@@ -39,7 +39,7 @@ struct LoginView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 90, height: 90)
-                        .padding(.top, 100)
+                        .padding(.top, 70)
                 } else {
                     Button {
                         shouldShowImagePicker.toggle()
@@ -63,7 +63,6 @@ struct LoginView: View {
                             .shadow(color: Color("blue"), radius: 3)
                         )
                     }
-                    .padding(.top, 60)
                 }
                 
                 Text(isLoginMode ? "Welcome to Chat" : "Choose Profile Image")
@@ -72,7 +71,7 @@ struct LoginView: View {
                 
                 // Custom text field
                 CustomTextField(icon: "envelope.fill", title: "Email", hint: "joe.smith@gmail.com", value: $email, showPassword: $showPassword)
-                    .padding(.top, 50)
+                    .padding(.top, isLoginMode ? 30 : 10)
                 
                 CustomTextField(icon: "lock.fill", title: "Password", hint: "123456", value: $password, showPassword: $showPassword)
                     .padding(.top, 10)

@@ -131,7 +131,6 @@ struct AllChatsView: View {
                 .padding(.horizontal)
             }
         }
-//        .padding(.bottom, 50)
     }
     
     @State var shouldShowNewMessageScreen = false
@@ -154,6 +153,7 @@ struct AllChatsView: View {
                         .frame(width: 50, height: 50)
                 }
                 .padding(.trailing, 30)
+                .padding(.bottom, 30)
             }
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
